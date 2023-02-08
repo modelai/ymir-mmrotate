@@ -3,14 +3,15 @@ import argparse
 import logging
 import os
 import os.path as osp
-
 from mmdet.utils import register_all_modules as register_all_modules_mmdet
 from mmengine.config import Config, DictAction
 from mmengine.logging import print_log
 from mmengine.registry import RUNNERS
 from mmengine.runner import Runner
+from ymir_exc.util import get_merged_config
 
 from mmrotate.utils import register_all_modules
+from ymir.utils.common import modify_mmengine_config
 
 
 def parse_args():
@@ -63,6 +64,9 @@ def main():
 
     # load config
     cfg = Config.fromfile(args.config)
+    ymir_cfg = get_merged_config()
+    modify_mmengine_config(cfg, ymir_cfg)
+
     cfg.launcher = args.launcher
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
