@@ -7,4 +7,11 @@ if __name__ == '__main__':
     config_file = 'configs/rotated_rtmdet/rotated_rtmdet_tiny-3x-dota.py'
     checkpoint_file = 'ymir/weights/rotated_rtmdet_tiny-3x-dota-9d821076.pth'
     model = init_detector(config_file, checkpoint_file, device='cuda:0')
-    inference_detector(model, 'demo/demo.jpg')
+    results = inference_detector(model, 'demo/demo.jpg')
+
+    scores = results.pred_instances.scores
+    bboxes = results.pred_instances.bboxes
+    labels = results.pred_instances.labels
+
+    for idx, result in enumerate(zip(bboxes, scores, labels)):
+        print(result)
