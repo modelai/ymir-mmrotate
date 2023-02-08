@@ -4,4 +4,4 @@ tqdm
 imagesize
 nptyping
 tensorboard
--e git+https://github.com/modelai/ymir-executor-sdk.git@ymir2.1.0#egg=ymir-exc
+git+https://github.com/modelai/ymir-executor-sdk.git@ymir2.1.0#egg=ymir-exc

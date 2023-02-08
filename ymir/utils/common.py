@@ -86,6 +86,7 @@ def get_mmengine_dataset_config(ymir_cfg: edict) -> Config:
         file_cfg[f'{split}_dataloader'].dataset.update(ymir_dataset_cfg)
 
     file_cfg.test_dataloader = file_cfg.val_dataloader
+    file_cfg.test_dataloader.dataset.pipeline = file_cfg.test_pipeline
 
     return file_cfg
 
